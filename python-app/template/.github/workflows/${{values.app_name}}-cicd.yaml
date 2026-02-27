@@ -66,6 +66,7 @@ jobs:
               user: runner
           current-context: in-cluster
           EOF_KUBECONFIG
+          chmod 600 "$RUNNER_TEMP/kubeconfig"
           echo "KUBECONFIG=$RUNNER_TEMP/kubeconfig" >> "$GITHUB_ENV"
 
       - name: Install Helm
@@ -84,7 +85,6 @@ jobs:
         run: |
           helm upgrade --install ${{values.app_name}} ./charts/${{values.app_name}} \
             --namespace python \
-            --create-namespace \
             --set image.repository=kittyiv/${{values.app_name}} \
             --set-string image.tag=${{ '${{ needs.docker.outputs.commit_id }}' }} \
             --wait \
