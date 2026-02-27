@@ -37,7 +37,6 @@ jobs:
       - self-hosted
       - linux
       - x64
-      - ${{values.app_name}}
     steps:
       - uses: actions/checkout@v4
 
