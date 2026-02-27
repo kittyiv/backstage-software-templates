@@ -83,7 +83,7 @@ jobs:
         shell: bash
         run: |
           helm upgrade --install ${{values.app_name}} ./charts/${{values.app_name}} \
-            --namespace ${{values.app_env}} \
+            --namespace python \
             --create-namespace \
             --set image.repository=kittyiv/${{values.app_name}} \
             --set-string image.tag=${{ '${{ needs.docker.outputs.commit_id }}' }} \
